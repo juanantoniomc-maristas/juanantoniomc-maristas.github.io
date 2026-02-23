@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maristas-Córdoba Debate</title>
+  <title>Maristas-Córdoba Debate | Temporizador Equipos A/B Alterno</title>
   <style>
     :root{
       --magenta:#c5007e;
@@ -131,7 +131,7 @@
       padding: 10px 16px 12px;
       text-align:center;
       display: grid;
-      grid-template-rows: auto auto auto auto auto auto auto auto;
+      grid-template-rows: auto auto auto auto auto auto auto auto auto;
       align-content: start;
       justify-items: center;
       gap: 6px;
@@ -204,7 +204,6 @@
       box-shadow: 0 6px 14px rgba(0,20,137,.08);
     }
 
-    /* Más compacto para dejar protagonismo al cronómetro */
     .role {
       min-height: 1.4em;
       font-size: clamp(.95rem, 1.4vw, 1.05rem);
@@ -230,7 +229,6 @@
       width: 100%;
     }
 
-    /* Timer más dominante */
     .timer {
       width: min(1350px, 98%);
       border-radius: 24px;
@@ -284,7 +282,6 @@
       50% { transform: scale(1.008); }
     }
 
-    /* Barra de progreso más fina */
     .progress {
       height: 8px;
       width: 100%;
@@ -305,7 +302,6 @@
       transition: width .18s linear;
     }
 
-    /* Números MUCHO más grandes */
     .time {
       position: relative;
       z-index: 1;
@@ -318,7 +314,6 @@
       margin: 2px 0 0;
     }
 
-    /* Estado más discreto */
     .status {
       position: relative;
       z-index: 1;
@@ -434,6 +429,30 @@
     .legend { font-size: .86rem; line-height: 1.25; margin-top: 2px; }
     .footer-mini { font-size: .8rem; color: rgba(0,20,137,.65); }
 
+    /* Autoría y derechos */
+    .credits{
+      width: min(1350px, 98%);
+      margin-top: 8px;
+      padding: 10px 14px;
+      border-top: 2px solid rgba(0,20,137,.10);
+      color: var(--azul);
+      text-align: center;
+      background: linear-gradient(180deg, rgba(0,20,137,.02), rgba(197,0,126,.02));
+      border-radius: 12px;
+    }
+
+    .credits-line{
+      font-size: clamp(1rem, 1.6vw, 1.25rem);
+      line-height: 1.25;
+      font-weight: 700;
+      letter-spacing: .2px;
+    }
+
+    .credits-line + .credits-line{
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
     .fullscreen-badge {
       position: absolute;
       top: 10px;
@@ -482,13 +501,17 @@
       .content { padding: 10px 10px 12px; gap: 7px; }
 
       .buttons-grid { grid-template-columns: 1fr; width: 100%; }
-      .controls, .legend, .footer-mini, .team-selectors, .timer, .timer-wrap, .meta-row { width: 100%; }
+      .controls, .legend, .footer-mini, .team-selectors, .timer, .timer-wrap, .meta-row, .credits { width: 100%; }
       .timer{ border-radius: 18px; padding: 10px 12px 8px; }
       .team-pill{ min-width: 120px; }
 
       .time {
         font-size: clamp(3.6rem, 18vw, 6.2rem);
         letter-spacing: 1px;
+      }
+
+      .credits-line{
+        font-size: clamp(.95rem, 4vw, 1.1rem);
       }
     }
 
@@ -540,7 +563,6 @@
       font-size: .88rem;
     }
 
-    /* Fullscreen: timer gigantesco */
     :fullscreen .timer,
     :-webkit-full-screen .timer {
       width: min(1800px, 99vw);
@@ -585,7 +607,9 @@
     :fullscreen .meta-row,
     :-webkit-full-screen .meta-row,
     :fullscreen .team-selectors,
-    :-webkit-full-screen .team-selectors {
+    :-webkit-full-screen .team-selectors,
+    :fullscreen .credits,
+    :-webkit-full-screen .credits {
       width: min(1800px, 99vw);
     }
 
@@ -598,6 +622,17 @@
     :fullscreen .footer-mini,
     :-webkit-full-screen .footer-mini{
       font-size: .76rem;
+    }
+
+    :fullscreen .credits,
+    :-webkit-full-screen .credits{
+      margin-top: 6px;
+      padding: 8px 12px;
+    }
+
+    :fullscreen .credits-line,
+    :-webkit-full-screen .credits-line{
+      font-size: clamp(.95rem, 1.2vw, 1.15rem);
     }
   </style>
 </head>
@@ -667,6 +702,11 @@
       </div>
       <div class="footer-mini">
         Atajos: <strong>F</strong> pantalla completa · <strong>Espacio</strong> pausar/reanudar · <strong>A</strong> ronda simple · <strong>D</strong> debate alterno · <strong>T</strong> cambiar equipo · <strong>1-4</strong> turnos manuales
+      </div>
+
+      <div class="credits" aria-label="Autoría y derechos de uso">
+        <div class="credits-line"><strong>Autor:</strong> JUAN ANTONIO MUÑOZ CRUZ</div>
+        <div class="credits-line">Creado para uso interno de los centros de titularidad Marista</div>
       </div>
     </section>
   </main>
