@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maristas-Córdoba Debate | Temporizador</title>
+  <title>Maristas-Córdoba Debate | Temporizador Equipos A/B Alterno</title>
   <style>
     :root{
       --magenta:#c5007e;
@@ -11,8 +11,6 @@
       --blanco:#ffffff;
       --bg1:#f8f9ff;
       --bg2:#ffffff;
-      --soft-blue: rgba(0, 20, 137, .10);
-      --soft-magenta: rgba(197, 0, 126, .12);
       --shadow: 0 18px 40px rgba(0,20,137,.12), 0 8px 18px rgba(197,0,126,.08);
       --radius: 24px;
     }
@@ -38,10 +36,9 @@
       padding: 12px;
     }
 
-    /* ===== CONTENEDOR PRINCIPAL (panorámico también en ventana) ===== */
     .app {
-      width: min(1400px, 98vw);
-      min-height: min(92vh, 900px);
+      width: min(1500px, 98vw);
+      min-height: min(95vh, 980px);
       background: var(--blanco);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -49,10 +46,9 @@
       overflow: hidden;
       position: relative;
       display: grid;
-      grid-template-rows: auto auto 1fr; /* top-bar + cabecera logo + contenido */
+      grid-template-rows: auto auto 1fr;
     }
 
-    /* ===== BARRA SUPERIOR ===== */
     .top-bar{
       display:flex;
       align-items:center;
@@ -98,7 +94,6 @@
 
     .top-actions button:active { transform: scale(.985); }
 
-    /* ===== CABECERA CON LOGO + TÍTULO ===== */
     .brand-header{
       display:flex;
       flex-direction:column;
@@ -115,7 +110,7 @@
       display:block;
       width: auto;
       height: auto;
-      max-height: 88px;          /* tamaño medio */
+      max-height: 88px;
       max-width: min(420px, 70vw);
       object-fit: contain;
       object-position: center;
@@ -132,30 +127,38 @@
       text-transform: uppercase;
     }
 
-    /* ===== CONTENIDO ===== */
     .content {
-      padding: 12px 18px 14px;
+      padding: 10px 16px 12px;
       text-align:center;
       display: grid;
-      grid-template-rows: auto auto auto auto auto auto auto;
+      grid-template-rows: auto auto auto auto auto auto auto auto;
       align-content: start;
       justify-items: center;
-      gap: 8px;
+      gap: 6px;
       min-height: 0;
+      overflow: hidden auto;
+    }
+
+    .meta-row{
+      width: min(1400px, 98%);
+      display:grid;
+      grid-template-columns: 1fr auto auto;
+      gap:10px;
+      align-items:center;
     }
 
     .round-chip {
       display:inline-flex;
       align-items:center;
       gap: 8px;
-      padding: .42rem .72rem;
+      padding: .38rem .7rem;
       border-radius: 999px;
       background: rgba(0,20,137,.06);
       border:1px solid rgba(0,20,137,.10);
-      font-size: .92rem;
+      font-size: .88rem;
       font-weight:700;
       color: var(--azul);
-      margin-bottom: 2px;
+      justify-self:start;
     }
 
     .dot {
@@ -173,18 +176,45 @@
       100% { box-shadow: 0 0 0 0 rgba(197,0,126,0); }
     }
 
+    .team-pill{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-width: 136px;
+      padding: .42rem .76rem;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 2px solid rgba(0,20,137,.12);
+      background: white;
+      color: var(--azul);
+      transition: .2s ease;
+      font-size: .92rem;
+    }
+
+    .team-pill.a.active{
+      border-color: var(--magenta);
+      color: var(--magenta);
+      background: rgba(197,0,126,.05);
+      box-shadow: 0 6px 14px rgba(197,0,126,.08);
+    }
+
+    .team-pill.b.active{
+      border-color: var(--azul);
+      background: rgba(0,20,137,.05);
+      box-shadow: 0 6px 14px rgba(0,20,137,.08);
+    }
+
+    /* Más compacto para dejar protagonismo al cronómetro */
     .role {
-      min-height: 1.6em;
-      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      min-height: 1.4em;
+      font-size: clamp(.95rem, 1.4vw, 1.05rem);
       font-weight: 700;
       color: var(--azul);
-      margin-bottom: 2px;
+      margin-bottom: 0;
       transition: transform .25s ease, opacity .25s ease;
     }
 
-    .role.change {
-      animation: rolePop .45s ease;
-    }
+    .role.change { animation: rolePop .45s ease; }
 
     @keyframes rolePop {
       0% { opacity: .2; transform: translateY(-6px); }
@@ -195,22 +225,32 @@
     .timer-wrap {
       display:flex;
       justify-content:center;
-      margin: 4px 0 8px;
+      margin: 2px 0 6px;
       position: relative;
       width: 100%;
     }
 
+    /* Timer más dominante */
     .timer {
-      width: min(1200px, 96%);
+      width: min(1350px, 98%);
       border-radius: 24px;
       color: white;
       background: linear-gradient(135deg, var(--azul), #1a2fc2);
       border: 3px solid rgba(197,0,126,.18);
       box-shadow: 0 16px 34px rgba(0,20,137,.16);
-      padding: 16px 14px 12px;
+      padding: 12px 18px 10px;
       position: relative;
       overflow: hidden;
-      transition: background .25s ease, transform .2s ease;
+      transition: background .25s ease, transform .2s ease, border-color .2s ease;
+    }
+
+    .timer.team-a {
+      border-color: rgba(197,0,126,.45);
+      box-shadow: 0 16px 34px rgba(197,0,126,.16);
+    }
+
+    .timer.team-b {
+      border-color: rgba(255,255,255,.35);
     }
 
     .timer::before {
@@ -223,9 +263,7 @@
       pointer-events:none;
     }
 
-    .timer.warning {
-      animation: shakeSoft .45s ease;
-    }
+    .timer.warning { animation: shakeSoft .45s ease; }
 
     @keyframes shakeSoft {
       0%,100% { transform: translateX(0); }
@@ -246,13 +284,14 @@
       50% { transform: scale(1.008); }
     }
 
+    /* Barra de progreso más fina */
     .progress {
-      height: 10px;
+      height: 8px;
       width: 100%;
       background: rgba(255,255,255,.18);
       border-radius: 999px;
       overflow: hidden;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       border:1px solid rgba(255,255,255,.18);
       position: relative;
       z-index: 1;
@@ -266,34 +305,69 @@
       transition: width .18s linear;
     }
 
+    /* Números MUCHO más grandes */
     .time {
       position: relative;
       z-index: 1;
-      font-size: clamp(3.2rem, 8.8vw, 6.4rem);
+      font-size: clamp(5.2rem, 14vw, 10rem);
       font-weight: 900;
       letter-spacing: 2px;
-      line-height: 1;
+      line-height: .9;
       font-variant-numeric: tabular-nums;
       text-shadow: 0 2px 10px rgba(0,0,0,.12);
+      margin: 2px 0 0;
     }
 
+    /* Estado más discreto */
     .status {
       position: relative;
       z-index: 1;
-      margin-top: 6px;
-      font-size: .95rem;
+      margin-top: 2px;
+      font-size: .85rem;
       font-weight: 700;
       opacity: .96;
       letter-spacing: .2px;
-      min-height: 1.2em;
+      min-height: 1em;
+    }
+
+    .team-selectors {
+      display:flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content:center;
+      width: min(1350px, 98%);
+    }
+
+    .team-btn {
+      border:2px solid rgba(0,20,137,.14);
+      background:#fff;
+      color:var(--azul);
+      border-radius:12px;
+      padding:.62rem .9rem;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow: 0 8px 16px rgba(0,20,137,.08);
+      transition:.15s ease;
+      font-size: .92rem;
+    }
+
+    .team-btn:hover { transform: translateY(-1px); }
+    .team-btn.active-a {
+      border-color: var(--magenta);
+      color: var(--magenta);
+      background: rgba(197,0,126,.05);
+    }
+    .team-btn.active-b {
+      border-color: var(--azul);
+      background: rgba(0,20,137,.05);
     }
 
     .buttons-grid {
       display:grid;
-      grid-template-columns: repeat(4, minmax(170px, 1fr)); /* panorámico en ventana */
+      grid-template-columns: repeat(4, minmax(170px, 1fr));
       gap: 10px;
-      margin: 8px auto 10px;
-      width: min(1200px, 96%);
+      margin: 6px auto 8px;
+      width: min(1350px, 98%);
     }
 
     button.role-btn {
@@ -302,8 +376,8 @@
       border-radius: 14px;
       background: white;
       color: var(--azul);
-      padding: .9rem .9rem;
-      font-size: .98rem;
+      padding: .82rem .82rem;
+      font-size: .95rem;
       font-weight: 800;
       cursor: pointer;
       transition: transform .12s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
@@ -327,21 +401,21 @@
       justify-content:center;
       gap: 8px;
       flex-wrap: wrap;
-      width: min(1200px, 96%);
+      width: min(1350px, 98%);
       margin-inline: auto;
     }
 
     .controls button {
       border:none;
       border-radius: 12px;
-      padding: .72rem .9rem;
+      padding: .68rem .86rem;
       font-weight: 800;
       cursor:pointer;
       transition: transform .12s ease;
       background: var(--azul);
       color: white;
       box-shadow: 0 8px 14px rgba(0,20,137,.13);
-      font-size: .94rem;
+      font-size: .9rem;
     }
 
     .controls button.magenta { background: var(--magenta); box-shadow: 0 8px 14px rgba(197,0,126,.15); }
@@ -351,23 +425,14 @@
       border:1px solid rgba(0,20,137,.12);
       box-shadow:none;
     }
-
     .controls button:active { transform: scale(.985); }
 
-    .legend {
-      margin-top: 6px;
-      font-size: .9rem;
+    .legend, .footer-mini {
+      width: min(1350px, 98%);
       color: rgba(0,20,137,.78);
-      line-height: 1.32;
-      width: min(1200px, 96%);
     }
-
-    .footer-mini {
-      margin-top: 2px;
-      font-size: .83rem;
-      color: rgba(0,20,137,.65);
-      width: min(1200px, 96%);
-    }
+    .legend { font-size: .86rem; line-height: 1.25; margin-top: 2px; }
+    .footer-mini { font-size: .8rem; color: rgba(0,20,137,.65); }
 
     .fullscreen-badge {
       position: absolute;
@@ -385,69 +450,46 @@
       transition: opacity .2s ease;
       z-index: 5;
     }
+    .app.is-fullscreen .fullscreen-badge { opacity: 1; }
 
-    .app.is-fullscreen .fullscreen-badge {
-      opacity: 1;
-    }
-
-    /* ===== RESPONSIVE ===== */
     @media (max-width: 1100px){
+      .meta-row{
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .round-chip{ justify-self:center; }
       .buttons-grid {
         grid-template-columns: repeat(2, minmax(220px, 1fr));
-        width: min(900px, 96%);
+        width: min(980px, 97%);
+      }
+
+      .time {
+        font-size: clamp(4.4rem, 16vw, 8rem);
       }
     }
 
     @media (max-width: 700px) {
       body { padding: 8px; }
-
-      .app{
-        width: 100%;
-        min-height: 96vh;
-        border-radius: 16px;
-      }
+      .app{ width: 100%; min-height: 96vh; border-radius: 16px; }
 
       .top-bar { padding: 8px 10px; }
       .top-actions button { padding: .55rem .75rem; font-size: .9rem; }
 
-      .brand-header{
-        padding: 10px 12px 8px;
-        gap: 6px;
+      .brand-header{ padding: 10px 12px 8px; gap: 6px; }
+      .center-logo{ max-height: 62px; max-width: 78vw; }
+      .brand-title{ font-size: clamp(1rem, 4vw, 1.2rem); letter-spacing: .5px; }
+
+      .content { padding: 10px 10px 12px; gap: 7px; }
+
+      .buttons-grid { grid-template-columns: 1fr; width: 100%; }
+      .controls, .legend, .footer-mini, .team-selectors, .timer, .timer-wrap, .meta-row { width: 100%; }
+      .timer{ border-radius: 18px; padding: 10px 12px 8px; }
+      .team-pill{ min-width: 120px; }
+
+      .time {
+        font-size: clamp(3.6rem, 18vw, 6.2rem);
+        letter-spacing: 1px;
       }
-
-      .center-logo{
-        max-height: 62px;
-        max-width: 78vw;
-      }
-
-      .brand-title{
-        font-size: clamp(1rem, 4vw, 1.2rem);
-        letter-spacing: .5px;
-      }
-
-      .content { padding: 10px 10px 12px; gap: 8px; }
-
-      .buttons-grid {
-        grid-template-columns: 1fr;
-        width: 100%;
-      }
-
-      .controls,
-      .legend,
-      .footer-mini {
-        width: 100%;
-      }
-
-      .timer{
-        width: 100%;
-        border-radius: 18px;
-      }
-    }
-
-    /* ===== PANTALLA COMPLETA MEJORADA ===== */
-    :fullscreen body,
-    :-webkit-full-screen body {
-      padding: 0;
     }
 
     :fullscreen .app,
@@ -459,107 +501,103 @@
       border-radius: 0;
       border: none;
       box-shadow: none;
-      grid-template-rows: auto auto 1fr;
-      overflow: hidden;
     }
 
-    /* scroll interno para que nunca se corten botones */
     :fullscreen .content,
     :-webkit-full-screen .content {
-      height: 100%;
-      min-height: 0;
       overflow-y: auto;
-      overflow-x: hidden;
-      display: grid;
-      grid-template-rows: auto auto auto auto auto auto auto;
-      align-content: start;
-      justify-items: center;
-      gap: 8px;
-      padding: 10px 18px 14px;
-    }
-
-    :fullscreen .brand-header,
-    :-webkit-full-screen .brand-header {
-      padding: 8px 14px 6px;
+      padding: 8px 14px 12px;
       gap: 6px;
+      align-content: start;
     }
 
     :fullscreen .center-logo,
     :-webkit-full-screen .center-logo{
-      max-height: 84px;
+      max-height: 78px;
       max-width: min(480px, 55vw);
-      width: auto;
-      height: auto;
     }
 
     :fullscreen .brand-title,
     :-webkit-full-screen .brand-title{
-      font-size: clamp(1.15rem, 1.9vw, 1.8rem);
+      font-size: clamp(1.05rem, 1.7vw, 1.6rem);
       line-height: 1.05;
     }
 
+    :fullscreen .brand-header,
+    :-webkit-full-screen .brand-header{
+      padding: 8px 12px 6px;
+      gap: 6px;
+    }
+
     :fullscreen .top-bar,
-    :-webkit-full-screen .top-bar {
+    :-webkit-full-screen .top-bar{
       padding: 7px 10px;
     }
 
     :fullscreen .top-actions button,
-    :-webkit-full-screen .top-actions button {
+    :-webkit-full-screen .top-actions button{
       padding: .46rem .7rem;
-      font-size: .9rem;
+      font-size: .88rem;
     }
 
-    :fullscreen .timer-wrap,
-    :-webkit-full-screen .timer-wrap {
-      width: 100%;
-      margin-bottom: 6px;
-    }
-
+    /* Fullscreen: timer gigantesco */
     :fullscreen .timer,
     :-webkit-full-screen .timer {
-      width: min(1600px, 97vw);
-      margin-inline: auto;
-      padding: 14px 16px 12px;
+      width: min(1800px, 99vw);
+      padding: 10px 18px 8px;
       border-radius: 20px;
     }
 
     :fullscreen .time,
     :-webkit-full-screen .time {
-      font-size: clamp(3.8rem, 8vw, 7.8rem);
-      line-height: .95;
+      font-size: clamp(6.8rem, 18vw, 14rem);
+      line-height: .86;
+      letter-spacing: 3px;
+      margin-top: 0;
+    }
+
+    :fullscreen .progress,
+    :-webkit-full-screen .progress{
+      height: 8px;
+      margin-bottom: 6px;
     }
 
     :fullscreen .role,
     :-webkit-full-screen .role {
-      font-size: clamp(1.05rem, 1.8vw, 1.6rem);
-      margin-bottom: 0;
+      font-size: clamp(.9rem, 1.2vw, 1rem);
+      min-height: 1.2em;
+    }
+
+    :fullscreen .status,
+    :-webkit-full-screen .status{
+      font-size: .78rem;
+      margin-top: 1px;
     }
 
     :fullscreen .buttons-grid,
-    :-webkit-full-screen .buttons-grid {
-      width: min(1600px, 97vw);
-      grid-template-columns: repeat(4, minmax(180px, 1fr));
-      margin: 6px auto 8px;
-    }
-
+    :-webkit-full-screen .buttons-grid,
     :fullscreen .controls,
     :-webkit-full-screen .controls,
     :fullscreen .legend,
     :-webkit-full-screen .legend,
     :fullscreen .footer-mini,
-    :-webkit-full-screen .footer-mini{
-      width: min(1600px, 97vw);
+    :-webkit-full-screen .footer-mini,
+    :fullscreen .meta-row,
+    :-webkit-full-screen .meta-row,
+    :fullscreen .team-selectors,
+    :-webkit-full-screen .team-selectors {
+      width: min(1800px, 99vw);
     }
 
     :fullscreen .legend,
     :-webkit-full-screen .legend{
-      font-size: .88rem;
-      margin-top: 4px;
+      font-size: .8rem;
+      line-height: 1.2;
     }
 
     :fullscreen .footer-mini,
     :-webkit-full-screen .footer-mini{
-      font-size: .8rem;
+      font-size: .76rem;
     }
   </style>
 </head>
@@ -570,26 +608,35 @@
     <header class="top-bar">
       <div class="top-actions">
         <button id="fullscreenBtn" class="secondary">Pantalla completa</button>
-        <button id="autoModeBtn" class="ghost" aria-pressed="false">Modo rondas: OFF</button>
+        <button id="autoModeBtn" class="ghost" aria-pressed="false">Modo rondas simples: OFF</button>
+        <button id="fullDebateModeBtn" class="ghost" aria-pressed="false">Modo debate alterno A/B: OFF</button>
       </div>
     </header>
 
     <section class="brand-header" aria-label="Cabecera del centro">
-      <!-- Guarda tu logo con este nombre en la misma carpeta que el HTML -->
       <img src="logo-maristas.png" alt="Logo Maristas" class="center-logo" />
       <h1 class="brand-title">MARISTAS-CÓRDOBA DEBATE</h1>
     </section>
 
     <section class="content">
-      <div class="round-chip">
-        <span class="dot"></span>
-        <span id="roundInfo">Ronda automática: desactivada</span>
+      <div class="meta-row">
+        <div class="round-chip">
+          <span class="dot"></span>
+          <span id="roundInfo">Ronda automática: desactivada</span>
+        </div>
+        <div class="team-pill a" id="teamPillA">Equipo A</div>
+        <div class="team-pill b" id="teamPillB">Equipo B</div>
       </div>
 
-      <div class="role" id="roleLabel">Selecciona un turno o inicia la ronda automática</div>
+      <div class="team-selectors">
+        <button class="team-btn active-a" id="selectTeamA">Seleccionar Equipo A (manual)</button>
+        <button class="team-btn" id="selectTeamB">Seleccionar Equipo B (manual)</button>
+      </div>
+
+      <div class="role" id="roleLabel">Selecciona equipo + turno, o inicia una ronda automática</div>
 
       <div class="timer-wrap">
-        <div class="timer" id="timerBox">
+        <div class="timer team-a" id="timerBox">
           <div class="progress" aria-hidden="true">
             <div id="progressFill"></div>
           </div>
@@ -606,7 +653,8 @@
       </section>
 
       <div class="controls">
-        <button id="startAutoBtn" class="magenta">Iniciar ronda automática</button>
+        <button id="startAutoBtn" class="magenta">Iniciar ronda automática (equipo seleccionado)</button>
+        <button id="startFullDebateBtn" class="magenta">Iniciar debate alterno A ↔ B</button>
         <button id="pauseBtn" class="ghost">Pausar</button>
         <button id="resumeBtn">Reanudar</button>
         <button id="resetBtn" class="magenta">Reiniciar turno</button>
@@ -614,25 +662,23 @@
       </div>
 
       <div class="legend">
-        Al terminar el tiempo, el contador sigue en <strong>negativo</strong> para medir el exceso.
-        En <strong>modo automático</strong>, los turnos se encadenan solos (Introductor → Refutador 1 → Refutador 2 → Conclusor).
+        <strong>Modo ronda automática simple:</strong> encadena los 4 turnos del equipo seleccionado.
+        <strong> Modo debate alterno A/B (real):</strong> A Introductor → B Introductor → A Refutador 1 → B Refutador 1 → A Refutador 2 → B Refutador 2 → A Conclusor → B Conclusor.
       </div>
       <div class="footer-mini">
-        Atajos: <strong>F</strong> pantalla completa · <strong>Espacio</strong> pausar/reanudar · <strong>A</strong> ronda automática · <strong>1-4</strong> turnos manuales
+        Atajos: <strong>F</strong> pantalla completa · <strong>Espacio</strong> pausar/reanudar · <strong>A</strong> ronda simple · <strong>D</strong> debate alterno · <strong>T</strong> cambiar equipo · <strong>1-4</strong> turnos manuales
       </div>
     </section>
   </main>
 
   <script>
-    // ===== CONFIGURACIÓN DE TURNOS =====
-    const DEBATE_TURNS = [
-      { label: "Introductor", seconds: 180 },
-      { label: "Refutador 1", seconds: 240 },
-      { label: "Refutador 2", seconds: 240 },
-      { label: "Conclusor", seconds: 180 }
+    const BASE_TURNS = [
+      { role: "Introductor", seconds: 180 },
+      { role: "Refutador 1", seconds: 240 },
+      { role: "Refutador 2", seconds: 240 },
+      { role: "Conclusor", seconds: 180 }
     ];
 
-    // ===== ELEMENTOS DOM =====
     const app = document.getElementById("app");
     const fsBadge = document.getElementById("fsBadge");
 
@@ -652,28 +698,33 @@
 
     const fullscreenBtn = document.getElementById("fullscreenBtn");
     const autoModeBtn = document.getElementById("autoModeBtn");
+    const fullDebateModeBtn = document.getElementById("fullDebateModeBtn");
     const startAutoBtn = document.getElementById("startAutoBtn");
+    const startFullDebateBtn = document.getElementById("startFullDebateBtn");
 
-    // ===== ESTADO =====
+    const teamPillA = document.getElementById("teamPillA");
+    const teamPillB = document.getElementById("teamPillB");
+    const selectTeamA = document.getElementById("selectTeamA");
+    const selectTeamB = document.getElementById("selectTeamB");
+
     let intervalId = null;
     let endTimestamp = null;
     let currentDuration = 0;
     let currentRole = "";
+    let currentTeam = "A";
     let paused = false;
     let pausedRemainingMs = 0;
 
     let justFinishedMainTime = false;
     let lastWholeSecond = null;
 
-    // Modo automático
-    let autoMode = false;
+    let autoMode = false;          // ronda simple
+    let fullDebateMode = false;    // debate alterno A/B
     let autoRunning = false;
+    let autoSequence = [];
     let autoIndex = 0;
 
-    // ===== UTILIDADES =====
-    function pad(n) {
-      return String(n).padStart(2, "0");
-    }
+    function pad(n) { return String(n).padStart(2, "0"); }
 
     function formatSignedTime(totalSeconds) {
       const isNeg = totalSeconds < 0;
@@ -685,7 +736,7 @@
 
     function setRoleLabel(text) {
       roleLabel.classList.remove("change");
-      void roleLabel.offsetWidth; // reinicia animación
+      void roleLabel.offsetWidth;
       roleLabel.textContent = text;
       roleLabel.classList.add("change");
     }
@@ -714,25 +765,77 @@
       progressFill.style.width = pct + "%";
     }
 
+    function setCurrentTeam(team) {
+      currentTeam = team === "B" ? "B" : "A";
+
+      teamPillA.classList.toggle("active", currentTeam === "A");
+      teamPillB.classList.toggle("active", currentTeam === "B");
+
+      selectTeamA.classList.toggle("active-a", currentTeam === "A");
+      selectTeamB.classList.toggle("active-b", currentTeam === "B");
+
+      timerBox.classList.toggle("team-a", currentTeam === "A");
+      timerBox.classList.toggle("team-b", currentTeam === "B");
+    }
+
+    function buildSimpleRoundSequence(team) {
+      return BASE_TURNS.map(t => ({ team, role: t.role, seconds: t.seconds }));
+    }
+
+    function buildAlternatingDebateSequence() {
+      const seq = [];
+      for (const t of BASE_TURNS) {
+        seq.push({ team: "A", role: t.role, seconds: t.seconds });
+        seq.push({ team: "B", role: t.role, seconds: t.seconds });
+      }
+      return seq;
+    }
+
+    function updateModeButtonsUI() {
+      autoModeBtn.textContent = `Modo rondas simples: ${autoMode ? "ON" : "OFF"}`;
+      autoModeBtn.setAttribute("aria-pressed", String(autoMode));
+
+      fullDebateModeBtn.textContent = `Modo debate alterno A/B: ${fullDebateMode ? "ON" : "OFF"}`;
+      fullDebateModeBtn.setAttribute("aria-pressed", String(fullDebateMode));
+    }
+
+    function updateRoundInfo() {
+      if (!autoRunning) {
+        if (fullDebateMode) {
+          roundInfo.textContent = "Modo debate alterno A/B activado (listo para iniciar)";
+        } else if (autoMode) {
+          roundInfo.textContent = `Ronda automática simple activada (Equipo ${currentTeam})`;
+        } else {
+          roundInfo.textContent = "Ronda automática: desactivada";
+        }
+        return;
+      }
+
+      const total = autoSequence.length;
+      const currentNum = Math.min(autoIndex + 1, total);
+      const step = autoSequence[Math.min(autoIndex, total - 1)];
+      roundInfo.textContent = `Automático en curso · ${currentNum}/${total} · Equipo ${step.team} · ${step.role}`;
+    }
+
     function handleAutoAdvanceIfNeeded(diffSeconds) {
-      if (autoMode && autoRunning && diffSeconds < 0 && !justFinishedMainTime) {
+      if (autoRunning && diffSeconds < 0 && !justFinishedMainTime) {
         justFinishedMainTime = true;
 
-        // pequeño margen para que se vea el negativo antes de pasar al siguiente
         setTimeout(() => {
-          if (autoMode && autoRunning) {
-            autoIndex++;
-            if (autoIndex < DEBATE_TURNS.length) {
-              const next = DEBATE_TURNS[autoIndex];
-              startTimer(next.seconds, next.label, findButtonByRole(next.label), true);
-            } else {
-              clearTimerInterval();
-              autoRunning = false;
-              updateRoundInfo();
-              setRoleLabel("Ronda automática finalizada");
-              statusText.textContent = "Fin de ronda";
-              timerBox.classList.remove("negative");
-            }
+          if (!autoRunning) return;
+
+          autoIndex++;
+          if (autoIndex < autoSequence.length) {
+            const next = autoSequence[autoIndex];
+            setCurrentTeam(next.team);
+            startTimer(next.seconds, next.role, findButtonByRole(next.role), true);
+          } else {
+            clearTimerInterval();
+            autoRunning = false;
+            setRoleLabel("Secuencia automática finalizada");
+            statusText.textContent = fullDebateMode ? "Fin del debate alterno A/B" : "Fin de ronda";
+            timerBox.classList.remove("negative");
+            updateRoundInfo();
           }
         }, 1100);
       }
@@ -746,7 +849,6 @@
       timeDisplay.textContent = formatSignedTime(diffSeconds);
       updateProgress(diffSeconds);
 
-      // Avisos visuales 3,2,1 (sin sonido)
       if (diffSeconds >= 1 && diffSeconds <= 3 && diffSeconds !== lastWholeSecond) {
         timerBox.classList.add("warning");
         setTimeout(() => timerBox.classList.remove("warning"), 350);
@@ -755,18 +857,16 @@
 
       if (diffSeconds >= 0) {
         timerBox.classList.remove("negative");
-        statusText.textContent = diffSeconds === 0 ? "Tiempo agotado" : (autoRunning ? "Contando (ronda automática)" : "Contando");
+        statusText.textContent = diffSeconds === 0 ? "Tiempo agotado" : (autoRunning ? "Contando (automático)" : "Contando");
       } else {
         timerBox.classList.add("negative");
         statusText.textContent = "Tiempo excedido";
       }
 
-      // Marca paso a negativo (manual)
-      if (!autoMode && diffSeconds < 0 && !justFinishedMainTime) {
+      if (!autoRunning && diffSeconds < 0 && !justFinishedMainTime) {
         justFinishedMainTime = true;
       }
 
-      // Auto avance
       handleAutoAdvanceIfNeeded(diffSeconds);
     }
 
@@ -782,8 +882,8 @@
 
       endTimestamp = Date.now() + seconds * 1000;
 
-      setRoleLabel(`Turno: ${roleName}`);
-      statusText.textContent = fromAuto ? "Contando (ronda automática)" : "Contando";
+      setRoleLabel(`Equipo ${currentTeam} · Turno: ${roleName}`);
+      statusText.textContent = fromAuto ? "Contando (automático)" : "Contando";
       timerBox.classList.remove("negative");
       updateActiveButton(btnRef);
 
@@ -805,7 +905,7 @@
       if (!paused) return;
       endTimestamp = Date.now() + pausedRemainingMs;
       paused = false;
-      statusText.textContent = autoRunning ? "Contando (ronda automática)" : "Contando";
+      statusText.textContent = autoRunning ? "Contando (automático)" : "Contando";
       updateTimer();
       intervalId = setInterval(updateTimer, 150);
     }
@@ -823,54 +923,64 @@
       autoRunning = false;
       justFinishedMainTime = false;
       lastWholeSecond = null;
+      autoSequence = [];
+      autoIndex = 0;
 
       timeDisplay.textContent = "00:00";
       statusText.textContent = "Detenido";
-      setRoleLabel("Selecciona un turno o inicia la ronda automática");
+      setRoleLabel("Selecciona equipo + turno, o inicia una ronda automática");
       timerBox.classList.remove("negative");
       progressFill.style.width = "0%";
       updateActiveButton(null);
       updateRoundInfo();
     }
 
-    // ===== MODO RONDAS AUTOMÁTICAS =====
-    function updateRoundInfo() {
-      if (!autoMode) {
-        roundInfo.textContent = "Ronda automática: desactivada";
-        autoModeBtn.textContent = "Modo rondas: OFF";
-        autoModeBtn.setAttribute("aria-pressed", "false");
-        return;
-      }
-
-      autoModeBtn.textContent = "Modo rondas: ON";
-      autoModeBtn.setAttribute("aria-pressed", "true");
-
-      if (!autoRunning) {
-        roundInfo.textContent = "Ronda automática activada (lista para iniciar)";
-      } else {
-        const total = DEBATE_TURNS.length;
-        const currentNum = Math.min(autoIndex + 1, total);
-        roundInfo.textContent = `Ronda automática en curso · Turno ${currentNum}/${total}`;
-      }
-    }
-
     function toggleAutoMode() {
       autoMode = !autoMode;
-      if (!autoMode) autoRunning = false;
+      if (autoMode) fullDebateMode = false;
+      if (!autoMode && autoRunning && !fullDebateMode) autoRunning = false;
+      updateModeButtonsUI();
       updateRoundInfo();
     }
 
-    function startAutoRound() {
+    function toggleFullDebateMode() {
+      fullDebateMode = !fullDebateMode;
+      if (fullDebateMode) autoMode = false;
+      if (!fullDebateMode && autoRunning && !autoMode) autoRunning = false;
+      updateModeButtonsUI();
+      updateRoundInfo();
+    }
+
+    function startAutoRoundSimple() {
       autoMode = true;
+      fullDebateMode = false;
       autoRunning = true;
+      autoSequence = buildSimpleRoundSequence(currentTeam);
       autoIndex = 0;
+
+      updateModeButtonsUI();
       updateRoundInfo();
 
-      const first = DEBATE_TURNS[0];
-      startTimer(first.seconds, first.label, findButtonByRole(first.label), true);
+      const first = autoSequence[0];
+      setCurrentTeam(first.team);
+      startTimer(first.seconds, first.role, findButtonByRole(first.role), true);
     }
 
-    // ===== PANTALLA COMPLETA =====
+    function startAlternatingDebateAB() {
+      fullDebateMode = true;
+      autoMode = false;
+      autoRunning = true;
+      autoSequence = buildAlternatingDebateSequence();
+      autoIndex = 0;
+
+      updateModeButtonsUI();
+      updateRoundInfo();
+
+      const first = autoSequence[0];
+      setCurrentTeam(first.team);
+      startTimer(first.seconds, first.role, findButtonByRole(first.role), true);
+    }
+
     async function toggleFullscreen() {
       try {
         if (!document.fullscreenElement) {
@@ -890,15 +1000,21 @@
       fsBadge.style.opacity = isFs ? "1" : "0";
     }
 
-    // ===== EVENTOS =====
+    selectTeamA.addEventListener("click", () => {
+      setCurrentTeam("A");
+      if (!autoRunning) updateRoundInfo();
+    });
+
+    selectTeamB.addEventListener("click", () => {
+      setCurrentTeam("B");
+      if (!autoRunning) updateRoundInfo();
+    });
+
     roleButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         const seconds = parseInt(btn.dataset.seconds, 10);
         const label = btn.dataset.label;
-
-        // Si el usuario lanza un turno manual, se cancela la ronda automática en curso
         autoRunning = false;
-
         startTimer(seconds, label, btn, false);
       });
     });
@@ -909,12 +1025,14 @@
     stopBtn.addEventListener("click", stopAll);
 
     autoModeBtn.addEventListener("click", toggleAutoMode);
-    startAutoBtn.addEventListener("click", startAutoRound);
+    fullDebateModeBtn.addEventListener("click", toggleFullDebateMode);
+
+    startAutoBtn.addEventListener("click", startAutoRoundSimple);
+    startFullDebateBtn.addEventListener("click", startAlternatingDebateAB);
 
     fullscreenBtn.addEventListener("click", toggleFullscreen);
     document.addEventListener("fullscreenchange", syncFullscreenUI);
 
-    // Atajos de teclado (útiles en clase)
     document.addEventListener("keydown", (e) => {
       const key = e.key.toLowerCase();
 
@@ -933,7 +1051,14 @@
         stopAll();
       } else if (key === "a") {
         e.preventDefault();
-        startAutoRound();
+        startAutoRoundSimple();
+      } else if (key === "d") {
+        e.preventDefault();
+        startAlternatingDebateAB();
+      } else if (key === "t") {
+        e.preventDefault();
+        setCurrentTeam(currentTeam === "A" ? "B" : "A");
+        if (!autoRunning) updateRoundInfo();
       } else if (["1","2","3","4"].includes(key)) {
         e.preventDefault();
         const idx = parseInt(key, 10) - 1;
@@ -942,7 +1067,8 @@
       }
     });
 
-    // Inicialización
+    setCurrentTeam("A");
+    updateModeButtonsUI();
     updateRoundInfo();
     syncFullscreenUI();
   </script>
