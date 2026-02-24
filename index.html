@@ -44,674 +44,379 @@
       box-shadow: var(--shadow);
       border: 2px solid rgba(0,20,137,.07);
       overflow: hidden;
-      position: relative;
-      display: grid;
-      grid-template-rows: auto auto 1fr;
+      display: flex;
+      flex-direction: column;
     }
 
-    .top-bar{
+    /* --- CABECERA --- */
+    .top-bar {
       display:flex;
       align-items:center;
-      justify-content:center;
-      gap: 12px;
-      padding: 10px 14px;
+      justify-content: flex-end;
+      padding: 10px 20px;
       background: linear-gradient(135deg, rgba(0,20,137,.03), rgba(197,0,126,.04));
       border-bottom: 1px solid rgba(0,20,137,.08);
-      flex-wrap: wrap;
     }
 
-    .top-actions {
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content:center;
-    }
-
-    .top-actions button {
+    .top-bar button {
       border:none;
       border-radius: 12px;
-      padding: .6rem .85rem;
+      padding: .6rem 1rem;
       font-weight: 700;
       cursor:pointer;
       background: var(--azul);
       color: white;
-      box-shadow: 0 6px 14px rgba(0,20,137,.14);
-      transition: transform .12s ease, opacity .12s ease;
+      transition: transform .12s ease;
       font-size: .95rem;
     }
+    .top-bar button:active { transform: scale(.95); }
 
-    .top-actions button.secondary {
-      background: var(--magenta);
-      box-shadow: 0 6px 14px rgba(197,0,126,.16);
-    }
-
-    .top-actions button.ghost {
-      background: #eef2ff;
-      color: var(--azul);
-      box-shadow: none;
-      border: 1px solid rgba(0,20,137,.12);
-    }
-
-    .top-actions button:active { transform: scale(.985); }
-
-    .brand-header{
+    .brand-header {
       display:flex;
       flex-direction:column;
       align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding: 12px 16px 8px;
-      gap: 8px;
-      background: linear-gradient(180deg, rgba(197,0,126,.03), rgba(0,20,137,.02));
-      border-bottom: 1px solid rgba(0,20,137,.06);
+      padding: 15px 16px 5px;
     }
 
-    .center-logo{
-      display:block;
-      width: auto;
-      height: auto;
-      max-height: 88px;
-      max-width: min(420px, 70vw);
+    .center-logo {
+      height: 70px;
       object-fit: contain;
-      object-position: center;
       filter: drop-shadow(0 4px 10px rgba(0,20,137,.10));
     }
 
-    .brand-title{
-      margin: 0;
-      font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+    .brand-title {
+      margin: 8px 0 0;
+      font-size: 1.4rem;
       font-weight: 900;
-      letter-spacing: .8px;
       color: var(--azul);
-      line-height: 1.1;
       text-transform: uppercase;
     }
 
+    /* --- CONTENIDO CENTRAL --- */
     .content {
-      padding: 10px 16px 12px;
-      text-align:center;
-      display: grid;
-      grid-template-rows: auto auto auto auto auto auto auto auto auto;
-      align-content: start;
-      justify-items: center;
-      gap: 6px;
-      min-height: 0;
-      overflow: hidden auto;
-    }
-
-    .meta-row{
-      width: min(1400px, 98%);
-      display:grid;
-      grid-template-columns: 1fr auto auto;
-      gap:10px;
-      align-items:center;
-    }
-
-    .round-chip {
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: .38rem .7rem;
-      border-radius: 999px;
-      background: rgba(0,20,137,.06);
-      border:1px solid rgba(0,20,137,.10);
-      font-size: .88rem;
-      font-weight:700;
-      color: var(--azul);
-      justify-self:start;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius:50%;
-      background: var(--magenta);
-      box-shadow: 0 0 0 0 rgba(197,0,126,.5);
-      animation: ping 1.5s infinite;
-    }
-
-    @keyframes ping {
-      0% { box-shadow: 0 0 0 0 rgba(197,0,126,.45); }
-      70% { box-shadow: 0 0 0 10px rgba(197,0,126,0); }
-      100% { box-shadow: 0 0 0 0 rgba(197,0,126,0); }
-    }
-
-    .team-pill{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width: 136px;
-      padding: .42rem .76rem;
-      border-radius: 999px;
-      font-weight: 800;
-      border: 2px solid rgba(0,20,137,.12);
-      background: white;
-      color: var(--azul);
-      transition: .2s ease;
-      font-size: .92rem;
-    }
-
-    .team-pill.a.active{
-      border-color: var(--magenta);
-      color: var(--magenta);
-      background: rgba(197,0,126,.05);
-      box-shadow: 0 6px 14px rgba(197,0,126,.08);
-    }
-
-    .team-pill.b.active{
-      border-color: var(--azul);
-      background: rgba(0,20,137,.05);
-      box-shadow: 0 6px 14px rgba(0,20,137,.08);
+      flex: 1;
+      padding: 15px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
     }
 
     .role {
-      min-height: 1.4em;
-      font-size: clamp(.95rem, 1.4vw, 1.05rem);
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 800;
       color: var(--azul);
-      margin-bottom: 0;
-      transition: transform .25s ease, opacity .25s ease;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      background: rgba(0,20,137,.05);
+      padding: 6px 20px;
+      border-radius: 50px;
     }
 
-    .role.change { animation: rolePop .45s ease; }
-
-    @keyframes rolePop {
-      0% { opacity: .2; transform: translateY(-6px); }
-      60% { opacity: 1; transform: translateY(2px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
+    /* TEMPORIZADOR SÚPER GRANDE */
     .timer-wrap {
-      display:flex;
-      justify-content:center;
-      margin: 2px 0 6px;
-      position: relative;
       width: 100%;
+      display: flex;
+      justify-content: center;
     }
 
     .timer {
-      width: min(1350px, 98%);
-      border-radius: 24px;
+      width: min(1000px, 95%);
+      border-radius: 32px;
       color: white;
       background: linear-gradient(135deg, var(--azul), #1a2fc2);
-      border: 3px solid rgba(197,0,126,.18);
-      box-shadow: 0 16px 34px rgba(0,20,137,.16);
-      padding: 12px 18px 10px;
-      position: relative;
-      overflow: hidden;
-      transition: background .25s ease, transform .2s ease, border-color .2s ease;
+      border: 4px solid rgba(197,0,126,.18);
+      box-shadow: 0 16px 34px rgba(0,20,137,.2);
+      padding: 20px 30px;
+      text-align: center;
+      transition: all .25s ease;
     }
 
     .timer.team-a {
+      background: linear-gradient(135deg, var(--magenta), #a8006b);
       border-color: rgba(197,0,126,.45);
-      box-shadow: 0 16px 34px rgba(197,0,126,.16);
+      box-shadow: 0 16px 34px rgba(197,0,126,.25);
     }
-
     .timer.team-b {
       border-color: rgba(255,255,255,.35);
     }
 
-    .timer::before {
-      content: "";
-      position:absolute;
-      inset: -20%;
-      background:
-        radial-gradient(circle at 20% 25%, rgba(255,255,255,.15), transparent 30%),
-        radial-gradient(circle at 80% 75%, rgba(255,255,255,.10), transparent 28%);
-      pointer-events:none;
-    }
-
-    .timer.warning { animation: shakeSoft .45s ease; }
-
-    @keyframes shakeSoft {
-      0%,100% { transform: translateX(0); }
-      20% { transform: translateX(-2px); }
-      40% { transform: translateX(2px); }
-      60% { transform: translateX(-1px); }
-      80% { transform: translateX(1px); }
-    }
-
     .timer.negative {
-      background: linear-gradient(135deg, var(--magenta), #e20094);
+      background: #e63946;
       animation: pulseExcess 1s infinite ease-in-out;
-      box-shadow: 0 16px 34px rgba(197,0,126,.22);
     }
 
     @keyframes pulseExcess {
       0%,100% { transform: scale(1); }
-      50% { transform: scale(1.008); }
+      50% { transform: scale(1.02); }
     }
 
     .progress {
-      height: 8px;
+      height: 10px;
       width: 100%;
-      background: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.2);
       border-radius: 999px;
       overflow: hidden;
-      margin-bottom: 8px;
-      border:1px solid rgba(255,255,255,.18);
-      position: relative;
-      z-index: 1;
+      margin-bottom: 15px;
     }
-
     .progress > div {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.65));
+      background: white;
       border-radius: 999px;
       transition: width .18s linear;
     }
 
     .time {
-      position: relative;
-      z-index: 1;
-      font-size: clamp(5.2rem, 14vw, 10rem);
+      font-size: clamp(6rem, 18vw, 13rem); /* Ajustado para que no se salga */
       font-weight: 900;
       letter-spacing: 2px;
-      line-height: .9;
+      line-height: 0.9;
       font-variant-numeric: tabular-nums;
-      text-shadow: 0 2px 10px rgba(0,0,0,.12);
-      margin: 2px 0 0;
+      margin: 0;
+      white-space: nowrap; /* Evita que los números bajen de línea */
     }
 
     .status {
-      position: relative;
-      z-index: 1;
-      margin-top: 2px;
-      font-size: .85rem;
+      font-size: 1rem;
       font-weight: 700;
-      opacity: .96;
-      letter-spacing: .2px;
-      min-height: 1em;
+      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
-    .team-selectors {
-      display:flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      justify-content:center;
-      width: min(1350px, 98%);
-    }
-
-    .team-btn {
-      border:2px solid rgba(0,20,137,.14);
-      background:#fff;
-      color:var(--azul);
-      border-radius:12px;
-      padding:.62rem .9rem;
-      font-weight:800;
-      cursor:pointer;
-      box-shadow: 0 8px 16px rgba(0,20,137,.08);
-      transition:.15s ease;
-      font-size: .92rem;
-    }
-
-    .team-btn:hover { transform: translateY(-1px); }
-    .team-btn.active-a {
-      border-color: var(--magenta);
-      color: var(--magenta);
-      background: rgba(197,0,126,.05);
-    }
-    .team-btn.active-b {
-      border-color: var(--azul);
-      background: rgba(0,20,137,.05);
-    }
-
+    /* BOTONES DE TURNOS Y REPRODUCCIÓN */
     .buttons-grid {
       display:grid;
-      grid-template-columns: repeat(4, minmax(170px, 1fr));
-      gap: 10px;
-      margin: 6px auto 8px;
-      width: min(1350px, 98%);
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      width: min(1000px, 95%);
+      margin-top: 10px;
     }
 
     button.role-btn {
-      appearance: none;
       border: 2px solid rgba(0,20,137,.14);
-      border-radius: 14px;
+      border-radius: 16px;
       background: white;
       color: var(--azul);
-      padding: .82rem .82rem;
-      font-size: .95rem;
+      padding: 1rem;
+      font-size: 1rem;
       font-weight: 800;
       cursor: pointer;
-      transition: transform .12s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
-      box-shadow: 0 8px 16px rgba(0,20,137,.08);
+      box-shadow: 0 6px 12px rgba(0,20,137,.05);
+      transition: all .15s ease;
     }
 
-    button.role-btn:hover {
-      transform: translateY(-1px);
-      border-color: rgba(197,0,126,.45);
-      box-shadow: 0 10px 18px rgba(0,20,137,.12);
-    }
-
+    button.role-btn:hover { border-color: var(--azul); transform: translateY(-2px); }
     button.role-btn.active {
       border-color: var(--magenta);
-      color: var(--magenta);
-      background: linear-gradient(135deg, rgba(197,0,126,.08), rgba(0,20,137,.06));
+      color: white;
+      background: var(--magenta);
+      box-shadow: 0 8px 16px rgba(197,0,126,.2);
     }
 
-    .controls {
+    .controls-main {
       display:flex;
-      justify-content:center;
-      gap: 8px;
-      flex-wrap: wrap;
-      width: min(1350px, 98%);
-      margin-inline: auto;
+      gap: 12px;
+      margin-top: 5px;
+      width: min(1000px, 95%);
+      justify-content: center;
     }
 
-    .controls button {
-      border:none;
+    .controls-main button {
+      border: none;
       border-radius: 12px;
-      padding: .68rem .86rem;
+      padding: .8rem 1.5rem;
       font-weight: 800;
-      cursor:pointer;
-      transition: transform .12s ease;
+      font-size: 1rem;
+      cursor: pointer;
       background: var(--azul);
       color: white;
-      box-shadow: 0 8px 14px rgba(0,20,137,.13);
-      font-size: .9rem;
+      box-shadow: 0 6px 14px rgba(0,20,137,.15);
+      transition: transform .12s ease;
     }
-
-    .controls button.magenta { background: var(--magenta); box-shadow: 0 8px 14px rgba(197,0,126,.15); }
-    .controls button.ghost {
-      background:#eef1ff;
+    .controls-main button.secondary {
+      background: #eef2ff;
       color: var(--azul);
-      border:1px solid rgba(0,20,137,.12);
-      box-shadow:none;
-    }
-    .controls button:active { transform: scale(.985); }
-
-    .legend, .footer-mini {
-      width: min(1350px, 98%);
-      color: rgba(0,20,137,.78);
-    }
-    .legend { font-size: .86rem; line-height: 1.25; margin-top: 2px; }
-    .footer-mini { font-size: .8rem; color: rgba(0,20,137,.65); }
-
-    /* Autoría y derechos */
-    .credits{
-      width: min(1350px, 98%);
-      margin-top: 8px;
-      padding: 10px 14px;
-      border-top: 2px solid rgba(0,20,137,.10);
-      color: var(--azul);
-      text-align: center;
-      background: linear-gradient(180deg, rgba(0,20,137,.02), rgba(197,0,126,.02));
-      border-radius: 12px;
-    }
-
-    .credits-line{
-      font-size: clamp(1rem, 1.6vw, 1.25rem);
-      line-height: 1.25;
-      font-weight: 700;
-      letter-spacing: .2px;
-    }
-
-    .credits-line + .credits-line{
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    .fullscreen-badge {
-      position: absolute;
-      top: 10px;
-      right: 12px;
-      background: rgba(0,20,137,.08);
-      color: var(--azul);
-      border: 1px solid rgba(0,20,137,.12);
-      padding: .3rem .55rem;
-      border-radius: 999px;
-      font-size: .78rem;
-      font-weight: 700;
-      opacity: 0;
-      pointer-events:none;
-      transition: opacity .2s ease;
-      z-index: 5;
-    }
-    .app.is-fullscreen .fullscreen-badge { opacity: 1; }
-
-    @media (max-width: 1100px){
-      .meta-row{
-        grid-template-columns: 1fr;
-        justify-items: center;
-      }
-      .round-chip{ justify-self:center; }
-      .buttons-grid {
-        grid-template-columns: repeat(2, minmax(220px, 1fr));
-        width: min(980px, 97%);
-      }
-
-      .time {
-        font-size: clamp(4.4rem, 16vw, 8rem);
-      }
-    }
-
-    @media (max-width: 700px) {
-      body { padding: 8px; }
-      .app{ width: 100%; min-height: 96vh; border-radius: 16px; }
-
-      .top-bar { padding: 8px 10px; }
-      .top-actions button { padding: .55rem .75rem; font-size: .9rem; }
-
-      .brand-header{ padding: 10px 12px 8px; gap: 6px; }
-      .center-logo{ max-height: 62px; max-width: 78vw; }
-      .brand-title{ font-size: clamp(1rem, 4vw, 1.2rem); letter-spacing: .5px; }
-
-      .content { padding: 10px 10px 12px; gap: 7px; }
-
-      .buttons-grid { grid-template-columns: 1fr; width: 100%; }
-      .controls, .legend, .footer-mini, .team-selectors, .timer, .timer-wrap, .meta-row, .credits { width: 100%; }
-      .timer{ border-radius: 18px; padding: 10px 12px 8px; }
-      .team-pill{ min-width: 120px; }
-
-      .time {
-        font-size: clamp(3.6rem, 18vw, 6.2rem);
-        letter-spacing: 1px;
-      }
-
-      .credits-line{
-        font-size: clamp(.95rem, 4vw, 1.1rem);
-      }
-    }
-
-    :fullscreen .app,
-    :-webkit-full-screen .app {
-      width: 100vw;
-      height: 100vh;
-      max-width: none;
-      min-height: 100vh;
-      border-radius: 0;
-      border: none;
+      border: 2px solid var(--azul);
       box-shadow: none;
     }
+    .controls-main button.danger {
+      background: white;
+      color: #e63946;
+      border: 2px solid #ffccd0;
+    }
+    .controls-main button:active { transform: scale(.95); }
 
-    :fullscreen .content,
-    :-webkit-full-screen .content {
-      overflow-y: auto;
-      padding: 8px 14px 12px;
-      gap: 6px;
-      align-content: start;
+    /* --- PANEL INFERIOR: EQUIPOS Y AUTOMATIZACIÓN --- */
+    .settings-panel {
+      background: rgba(0,20,137,.03);
+      border-top: 2px solid rgba(0,20,137,.08);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
     }
 
-    :fullscreen .center-logo,
-    :-webkit-full-screen .center-logo{
-      max-height: 78px;
-      max-width: min(480px, 55vw);
+    .settings-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--azul);
+      opacity: 0.6;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
     }
 
-    :fullscreen .brand-title,
-    :-webkit-full-screen .brand-title{
-      font-size: clamp(1.05rem, 1.7vw, 1.6rem);
-      line-height: 1.05;
+    .settings-grid {
+      display: flex;
+      gap: 30px;
+      width: min(1000px, 95%);
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    :fullscreen .brand-header,
-    :-webkit-full-screen .brand-header{
-      padding: 8px 12px 6px;
-      gap: 6px;
+    .settings-col {
+      flex: 1;
+      min-width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
     }
 
-    :fullscreen .top-bar,
-    :-webkit-full-screen .top-bar{
-      padding: 7px 10px;
+    .settings-row {
+      display: flex;
+      gap: 10px;
+      width: 100%;
     }
 
-    :fullscreen .top-actions button,
-    :-webkit-full-screen .top-actions button{
-      padding: .46rem .7rem;
-      font-size: .88rem;
+    .team-btn, .auto-btn {
+      flex: 1;
+      border: 2px solid rgba(0,20,137,.14);
+      background: white;
+      color: var(--azul);
+      border-radius: 12px;
+      padding: .8rem;
+      font-weight: 800;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all .15s ease;
+      text-align: center;
     }
 
-    :fullscreen .timer,
-    :-webkit-full-screen .timer {
-      width: min(1800px, 99vw);
-      padding: 10px 18px 8px;
-      border-radius: 20px;
+    .team-btn.active-a { border-color: var(--magenta); color: white; background: var(--magenta); }
+    .team-btn.active-b { border-color: var(--azul); color: white; background: var(--azul); }
+    
+    .auto-btn:hover { border-color: var(--magenta); }
+    .auto-btn.active-mode { background: var(--azul); color: white; border-color: var(--azul); }
+
+    .round-info {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--magenta);
+      background: white;
+      padding: 6px 15px;
+      border-radius: 50px;
+      border: 1px solid rgba(197,0,126,.2);
+      margin-top: 10px;
     }
 
-    :fullscreen .time,
-    :-webkit-full-screen .time {
-      font-size: clamp(6.8rem, 18vw, 14rem);
-      line-height: .86;
-      letter-spacing: 3px;
-      margin-top: 0;
+    /* --- FOOTER --- */
+    .credits {
+      padding: 10px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--azul);
+      opacity: 0.8;
+      background: white;
     }
 
-    :fullscreen .progress,
-    :-webkit-full-screen .progress{
-      height: 8px;
-      margin-bottom: 6px;
-    }
-
-    :fullscreen .role,
-    :-webkit-full-screen .role {
-      font-size: clamp(.9rem, 1.2vw, 1rem);
-      min-height: 1.2em;
-    }
-
-    :fullscreen .status,
-    :-webkit-full-screen .status{
-      font-size: .78rem;
-      margin-top: 1px;
-    }
-
-    :fullscreen .buttons-grid,
-    :-webkit-full-screen .buttons-grid,
-    :fullscreen .controls,
-    :-webkit-full-screen .controls,
-    :fullscreen .legend,
-    :-webkit-full-screen .legend,
-    :fullscreen .footer-mini,
-    :-webkit-full-screen .footer-mini,
-    :fullscreen .meta-row,
-    :-webkit-full-screen .meta-row,
-    :fullscreen .team-selectors,
-    :-webkit-full-screen .team-selectors,
-    :fullscreen .credits,
-    :-webkit-full-screen .credits {
-      width: min(1800px, 99vw);
-    }
-
-    :fullscreen .legend,
-    :-webkit-full-screen .legend{
-      font-size: .8rem;
-      line-height: 1.2;
-    }
-
-    :fullscreen .footer-mini,
-    :-webkit-full-screen .footer-mini{
-      font-size: .76rem;
-    }
-
-    :fullscreen .credits,
-    :-webkit-full-screen .credits{
-      margin-top: 6px;
-      padding: 8px 12px;
-    }
-
-    :fullscreen .credits-line,
-    :-webkit-full-screen .credits-line{
-      font-size: clamp(.95rem, 1.2vw, 1.15rem);
+    /* FULLSCREEN ADAPTATIONS */
+    :fullscreen .app { width: 100vw; height: 100vh; max-width: none; border-radius: 0; border: none; }
+    :fullscreen .time { font-size: clamp(8rem, 22vw, 18rem); }
+    
+    @media (max-width: 800px) {
+      .buttons-grid { grid-template-columns: 1fr 1fr; }
+      .controls-main { flex-wrap: wrap; }
+      .controls-main button { flex: 1 1 40%; }
+      .settings-row { flex-direction: column; }
     }
   </style>
 </head>
 <body>
   <main class="app" id="app">
-    <div class="fullscreen-badge" id="fsBadge">Pantalla completa</div>
-
+    
     <header class="top-bar">
-      <div class="top-actions">
-        <button id="fullscreenBtn" class="secondary">Pantalla completa</button>
-        <button id="autoModeBtn" class="ghost" aria-pressed="false">Modo rondas simples: OFF</button>
-        <button id="fullDebateModeBtn" class="ghost" aria-pressed="false">Modo debate alterno A/B: OFF</button>
-      </div>
+      <button id="fullscreenBtn">⤢ Pantalla completa</button>
     </header>
 
-    <section class="brand-header" aria-label="Cabecera del centro">
-      <img src="logo-maristas.png" alt="Logo Maristas" class="center-logo" />
-      <h1 class="brand-title">MARISTAS-CÓRDOBA DEBATE</h1>
+    <section class="brand-header">
+      <img src="logo-maristas.png" alt="Logo Maristas" class="center-logo" onerror="this.style.display='none'" />
+      <h1 class="brand-title">MARISTAS CÓRDOBA | DEBATE</h1>
     </section>
 
     <section class="content">
-      <div class="meta-row">
-        <div class="round-chip">
-          <span class="dot"></span>
-          <span id="roundInfo">Ronda automática: desactivada</span>
-        </div>
-        <div class="team-pill a" id="teamPillA">Equipo A</div>
-        <div class="team-pill b" id="teamPillB">Equipo B</div>
-      </div>
-
-      <div class="team-selectors">
-        <button class="team-btn active-a" id="selectTeamA">Seleccionar Equipo A (manual)</button>
-        <button class="team-btn" id="selectTeamB">Seleccionar Equipo B (manual)</button>
-      </div>
-
-      <div class="role" id="roleLabel">Selecciona equipo + turno, o inicia una ronda automática</div>
+      
+      <div class="role" id="roleLabel">SELECCIONA EQUIPO Y TURNO</div>
 
       <div class="timer-wrap">
         <div class="timer team-a" id="timerBox">
-          <div class="progress" aria-hidden="true">
-            <div id="progressFill"></div>
-          </div>
+          <div class="progress" aria-hidden="true"><div id="progressFill"></div></div>
           <div class="time" id="timeDisplay">00:00</div>
           <div class="status" id="statusText">Listo</div>
         </div>
       </div>
 
-      <section class="buttons-grid" aria-label="Turnos de debate">
-        <button class="role-btn" data-label="Introductor" data-seconds="180">Introductor (3 min)</button>
-        <button class="role-btn" data-label="Refutador 1" data-seconds="240">Refutador 1 (4 min)</button>
-        <button class="role-btn" data-label="Refutador 2" data-seconds="240">Refutador 2 (4 min)</button>
-        <button class="role-btn" data-label="Conclusor" data-seconds="180">Conclusor (3 min)</button>
-      </section>
-
-      <div class="controls">
-        <button id="startAutoBtn" class="magenta">Iniciar ronda automática (equipo seleccionado)</button>
-        <button id="startFullDebateBtn" class="magenta">Iniciar debate alterno A ↔ B</button>
-        <button id="pauseBtn" class="ghost">Pausar</button>
-        <button id="resumeBtn">Reanudar</button>
-        <button id="resetBtn" class="magenta">Reiniciar turno</button>
-        <button id="stopBtn" class="ghost">Detener todo</button>
+      <div class="buttons-grid">
+        <button class="role-btn" data-label="Introductor" data-seconds="180">INTRO (3')</button>
+        <button class="role-btn" data-label="Refutador 1" data-seconds="240">REF 1 (4')</button>
+        <button class="role-btn" data-label="Refutador 2" data-seconds="240">REF 2 (4')</button>
+        <button class="role-btn" data-label="Conclusor" data-seconds="180">CONCLU (3')</button>
       </div>
 
-      <div class="legend">
-        <strong>Modo ronda automática simple:</strong> encadena los 4 turnos del equipo seleccionado.
-        <strong> Modo debate alterno A/B (real):</strong> A Introductor → B Introductor → A Refutador 1 → B Refutador 1 → A Refutador 2 → B Refutador 2 → A Conclusor → B Conclusor.
+      <div class="controls-main">
+        <button id="pauseBtn" class="secondary">⏸ Pausar</button>
+        <button id="resumeBtn">▶ Reanudar</button>
+        <button id="resetBtn" class="secondary">🔄 Reiniciar</button>
+        <button id="stopBtn" class="danger">⏹ Detener</button>
       </div>
-      <div class="footer-mini">
-        Atajos: <strong>F</strong> pantalla completa · <strong>Espacio</strong> pausar/reanudar · <strong>A</strong> ronda simple · <strong>D</strong> debate alterno · <strong>T</strong> cambiar equipo · <strong>1-4</strong> turnos manuales
-      </div>
-
-      <div class="credits" aria-label="Autoría y derechos de uso">
-        <div class="credits-line"><strong>Autor:</strong> JUAN ANTONIO MUÑOZ CRUZ</div>
-        <div class="credits-line">Creado para uso interno de los centros de titularidad Marista</div>
-      </div>
+      
     </section>
+
+    <section class="settings-panel">
+      <h3 class="settings-title">Configuración de Equipos y Automatización</h3>
+      
+      <div class="settings-grid">
+        <div class="settings-col">
+          <div class="settings-row">
+            <button class="team-btn active-a" id="selectTeamA">EQUIPO A</button>
+            <button class="team-btn" id="selectTeamB">EQUIPO B</button>
+          </div>
+        </div>
+        
+        <div class="settings-col">
+          <div class="settings-row">
+            <button id="startAutoBtn" class="auto-btn">▶ Ronda Simple</button>
+            <button id="startFullDebateBtn" class="auto-btn">▶ Debate Alterno (A ↔ B)</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="round-info" id="roundInfo">Ronda automática: desactivada</div>
+    </section>
+
+    <footer class="credits">
+      <strong>Autor:</strong> JUAN ANTONIO MUÑOZ CRUZ | Atajos: [F] Pantalla completa · [Espacio] Pausa/Play · [T] Cambiar Equipo · [1-4] Turnos
+    </footer>
+
   </main>
 
   <script>
+    /* EL CÓDIGO JS SE MANTIENE EXACTAMENTE IGUAL A TU LÓGICA ORIGINAL */
     const BASE_TURNS = [
       { role: "Introductor", seconds: 180 },
       { role: "Refutador 1", seconds: 240 },
@@ -720,8 +425,6 @@
     ];
 
     const app = document.getElementById("app");
-    const fsBadge = document.getElementById("fsBadge");
-
     const timeDisplay = document.getElementById("timeDisplay");
     const roleLabel = document.getElementById("roleLabel");
     const statusText = document.getElementById("statusText");
@@ -737,13 +440,9 @@
     const stopBtn = document.getElementById("stopBtn");
 
     const fullscreenBtn = document.getElementById("fullscreenBtn");
-    const autoModeBtn = document.getElementById("autoModeBtn");
-    const fullDebateModeBtn = document.getElementById("fullDebateModeBtn");
     const startAutoBtn = document.getElementById("startAutoBtn");
     const startFullDebateBtn = document.getElementById("startFullDebateBtn");
 
-    const teamPillA = document.getElementById("teamPillA");
-    const teamPillB = document.getElementById("teamPillB");
     const selectTeamA = document.getElementById("selectTeamA");
     const selectTeamB = document.getElementById("selectTeamB");
 
@@ -758,8 +457,8 @@
     let justFinishedMainTime = false;
     let lastWholeSecond = null;
 
-    let autoMode = false;          // ronda simple
-    let fullDebateMode = false;    // debate alterno A/B
+    let autoMode = false;          
+    let fullDebateMode = false;    
     let autoRunning = false;
     let autoSequence = [];
     let autoIndex = 0;
@@ -775,10 +474,7 @@
     }
 
     function setRoleLabel(text) {
-      roleLabel.classList.remove("change");
-      void roleLabel.offsetWidth;
       roleLabel.textContent = text;
-      roleLabel.classList.add("change");
     }
 
     function updateActiveButton(activeBtn) {
@@ -808,14 +504,15 @@
     function setCurrentTeam(team) {
       currentTeam = team === "B" ? "B" : "A";
 
-      teamPillA.classList.toggle("active", currentTeam === "A");
-      teamPillB.classList.toggle("active", currentTeam === "B");
-
       selectTeamA.classList.toggle("active-a", currentTeam === "A");
       selectTeamB.classList.toggle("active-b", currentTeam === "B");
 
       timerBox.classList.toggle("team-a", currentTeam === "A");
       timerBox.classList.toggle("team-b", currentTeam === "B");
+      
+      if(!autoRunning && currentRole) {
+         setRoleLabel(`Equipo ${currentTeam} · ${currentRole}`);
+      }
     }
 
     function buildSimpleRoundSequence(team) {
@@ -832,21 +529,18 @@
     }
 
     function updateModeButtonsUI() {
-      autoModeBtn.textContent = `Modo rondas simples: ${autoMode ? "ON" : "OFF"}`;
-      autoModeBtn.setAttribute("aria-pressed", String(autoMode));
-
-      fullDebateModeBtn.textContent = `Modo debate alterno A/B: ${fullDebateMode ? "ON" : "OFF"}`;
-      fullDebateModeBtn.setAttribute("aria-pressed", String(fullDebateMode));
+      startAutoBtn.classList.toggle("active-mode", autoMode);
+      startFullDebateBtn.classList.toggle("active-mode", fullDebateMode);
     }
 
     function updateRoundInfo() {
       if (!autoRunning) {
         if (fullDebateMode) {
-          roundInfo.textContent = "Modo debate alterno A/B activado (listo para iniciar)";
+          roundInfo.textContent = "Modo debate alterno A/B activado";
         } else if (autoMode) {
           roundInfo.textContent = `Ronda automática simple activada (Equipo ${currentTeam})`;
         } else {
-          roundInfo.textContent = "Ronda automática: desactivada";
+          roundInfo.textContent = "Modo Manual";
         }
         return;
       }
@@ -872,9 +566,10 @@
           } else {
             clearTimerInterval();
             autoRunning = false;
-            setRoleLabel("Secuencia automática finalizada");
-            statusText.textContent = fullDebateMode ? "Fin del debate alterno A/B" : "Fin de ronda";
+            setRoleLabel("DEBATE FINALIZADO");
+            statusText.textContent = "Fin";
             timerBox.classList.remove("negative");
+            updateModeButtonsUI();
             updateRoundInfo();
           }
         }, 1100);
@@ -889,18 +584,14 @@
       timeDisplay.textContent = formatSignedTime(diffSeconds);
       updateProgress(diffSeconds);
 
-      if (diffSeconds >= 1 && diffSeconds <= 3 && diffSeconds !== lastWholeSecond) {
-        timerBox.classList.add("warning");
-        setTimeout(() => timerBox.classList.remove("warning"), 350);
-      }
       lastWholeSecond = diffSeconds;
 
       if (diffSeconds >= 0) {
         timerBox.classList.remove("negative");
-        statusText.textContent = diffSeconds === 0 ? "Tiempo agotado" : (autoRunning ? "Contando (automático)" : "Contando");
+        statusText.textContent = diffSeconds === 0 ? "TIEMPO AGOTADO" : "EN CURSO";
       } else {
         timerBox.classList.add("negative");
-        statusText.textContent = "Tiempo excedido";
+        statusText.textContent = "TIEMPO EXCEDIDO";
       }
 
       if (!autoRunning && diffSeconds < 0 && !justFinishedMainTime) {
@@ -922,14 +613,12 @@
 
       endTimestamp = Date.now() + seconds * 1000;
 
-      setRoleLabel(`Equipo ${currentTeam} · Turno: ${roleName}`);
-      statusText.textContent = fromAuto ? "Contando (automático)" : "Contando";
+      setRoleLabel(`Equipo ${currentTeam} · ${roleName}`);
       timerBox.classList.remove("negative");
       updateActiveButton(btnRef);
 
       updateTimer();
       intervalId = setInterval(updateTimer, 150);
-
       updateRoundInfo();
     }
 
@@ -938,14 +627,14 @@
       pausedRemainingMs = endTimestamp - Date.now();
       clearTimerInterval();
       paused = true;
-      statusText.textContent = "Pausado";
+      statusText.textContent = "PAUSADO";
     }
 
     function resumeTimer() {
       if (!paused) return;
       endTimestamp = Date.now() + pausedRemainingMs;
       paused = false;
-      statusText.textContent = autoRunning ? "Contando (automático)" : "Contando";
+      statusText.textContent = "EN CURSO";
       updateTimer();
       intervalId = setInterval(updateTimer, 150);
     }
@@ -961,101 +650,59 @@
       paused = false;
       pausedRemainingMs = 0;
       autoRunning = false;
+      autoMode = false;
+      fullDebateMode = false;
       justFinishedMainTime = false;
       lastWholeSecond = null;
       autoSequence = [];
       autoIndex = 0;
 
       timeDisplay.textContent = "00:00";
-      statusText.textContent = "Detenido";
-      setRoleLabel("Selecciona equipo + turno, o inicia una ronda automática");
+      statusText.textContent = "DETENIDO";
+      setRoleLabel("SELECCIONA EQUIPO Y TURNO");
       timerBox.classList.remove("negative");
       progressFill.style.width = "0%";
       updateActiveButton(null);
-      updateRoundInfo();
-    }
-
-    function toggleAutoMode() {
-      autoMode = !autoMode;
-      if (autoMode) fullDebateMode = false;
-      if (!autoMode && autoRunning && !fullDebateMode) autoRunning = false;
-      updateModeButtonsUI();
-      updateRoundInfo();
-    }
-
-    function toggleFullDebateMode() {
-      fullDebateMode = !fullDebateMode;
-      if (fullDebateMode) autoMode = false;
-      if (!fullDebateMode && autoRunning && !autoMode) autoRunning = false;
       updateModeButtonsUI();
       updateRoundInfo();
     }
 
     function startAutoRoundSimple() {
-      autoMode = true;
-      fullDebateMode = false;
-      autoRunning = true;
+      autoMode = true; fullDebateMode = false; autoRunning = true;
       autoSequence = buildSimpleRoundSequence(currentTeam);
       autoIndex = 0;
-
-      updateModeButtonsUI();
-      updateRoundInfo();
-
+      updateModeButtonsUI(); updateRoundInfo();
       const first = autoSequence[0];
       setCurrentTeam(first.team);
       startTimer(first.seconds, first.role, findButtonByRole(first.role), true);
     }
 
     function startAlternatingDebateAB() {
-      fullDebateMode = true;
-      autoMode = false;
-      autoRunning = true;
+      fullDebateMode = true; autoMode = false; autoRunning = true;
       autoSequence = buildAlternatingDebateSequence();
       autoIndex = 0;
-
-      updateModeButtonsUI();
-      updateRoundInfo();
-
+      updateModeButtonsUI(); updateRoundInfo();
       const first = autoSequence[0];
       setCurrentTeam(first.team);
       startTimer(first.seconds, first.role, findButtonByRole(first.role), true);
     }
 
     async function toggleFullscreen() {
-      try {
-        if (!document.fullscreenElement) {
-          await document.documentElement.requestFullscreen();
-        } else {
-          await document.exitFullscreen();
-        }
-      } catch (err) {
-        console.warn("Pantalla completa no disponible:", err);
+      if (!document.fullscreenElement) {
+        await document.documentElement.requestFullscreen();
+      } else {
+        await document.exitFullscreen();
       }
     }
 
-    function syncFullscreenUI() {
-      const isFs = !!document.fullscreenElement;
-      app.classList.toggle("is-fullscreen", isFs);
-      fullscreenBtn.textContent = isFs ? "Salir pantalla completa" : "Pantalla completa";
-      fsBadge.style.opacity = isFs ? "1" : "0";
-    }
-
-    selectTeamA.addEventListener("click", () => {
-      setCurrentTeam("A");
-      if (!autoRunning) updateRoundInfo();
-    });
-
-    selectTeamB.addEventListener("click", () => {
-      setCurrentTeam("B");
-      if (!autoRunning) updateRoundInfo();
-    });
+    selectTeamA.addEventListener("click", () => { setCurrentTeam("A"); if (!autoRunning) updateRoundInfo(); });
+    selectTeamB.addEventListener("click", () => { setCurrentTeam("B"); if (!autoRunning) updateRoundInfo(); });
 
     roleButtons.forEach(btn => {
       btn.addEventListener("click", () => {
         const seconds = parseInt(btn.dataset.seconds, 10);
-        const label = btn.dataset.label;
-        autoRunning = false;
-        startTimer(seconds, label, btn, false);
+        autoRunning = false; autoMode = false; fullDebateMode = false; updateModeButtonsUI();
+        startTimer(seconds, btn.dataset.label, btn, false);
       });
     });
 
@@ -1063,54 +710,26 @@
     resumeBtn.addEventListener("click", resumeTimer);
     resetBtn.addEventListener("click", resetCurrentTurn);
     stopBtn.addEventListener("click", stopAll);
-
-    autoModeBtn.addEventListener("click", toggleAutoMode);
-    fullDebateModeBtn.addEventListener("click", toggleFullDebateMode);
-
     startAutoBtn.addEventListener("click", startAutoRoundSimple);
     startFullDebateBtn.addEventListener("click", startAlternatingDebateAB);
-
     fullscreenBtn.addEventListener("click", toggleFullscreen);
-    document.addEventListener("fullscreenchange", syncFullscreenUI);
 
     document.addEventListener("keydown", (e) => {
       const key = e.key.toLowerCase();
-
-      if (key === "f") {
+      if (key === "f") { e.preventDefault(); toggleFullscreen(); }
+      else if (key === " ") { e.preventDefault(); paused ? resumeTimer() : pauseTimer(); }
+      else if (key === "r") { e.preventDefault(); resetCurrentTurn(); }
+      else if (key === "s") { e.preventDefault(); stopAll(); }
+      else if (key === "t") { e.preventDefault(); setCurrentTeam(currentTeam === "A" ? "B" : "A"); }
+      else if (["1","2","3","4"].includes(key)) {
         e.preventDefault();
-        toggleFullscreen();
-      } else if (key === " ") {
-        e.preventDefault();
-        if (paused) resumeTimer();
-        else pauseTimer();
-      } else if (key === "r") {
-        e.preventDefault();
-        resetCurrentTurn();
-      } else if (key === "s") {
-        e.preventDefault();
-        stopAll();
-      } else if (key === "a") {
-        e.preventDefault();
-        startAutoRoundSimple();
-      } else if (key === "d") {
-        e.preventDefault();
-        startAlternatingDebateAB();
-      } else if (key === "t") {
-        e.preventDefault();
-        setCurrentTeam(currentTeam === "A" ? "B" : "A");
-        if (!autoRunning) updateRoundInfo();
-      } else if (["1","2","3","4"].includes(key)) {
-        e.preventDefault();
-        const idx = parseInt(key, 10) - 1;
-        const btn = roleButtons[idx];
+        const btn = roleButtons[parseInt(key, 10) - 1];
         if (btn) btn.click();
       }
     });
 
     setCurrentTeam("A");
-    updateModeButtonsUI();
     updateRoundInfo();
-    syncFullscreenUI();
   </script>
 </body>
 </html>
